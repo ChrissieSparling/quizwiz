@@ -10,7 +10,7 @@ function printHighscores() {
       for(var i = 0; i < highScores.length; i++){
         // create li tag for each high score
         var scoreLi = document.createElement("li");
-        scoreLi.textContent = highScores[i].initials + " - " + highScores[i].score;
+        scoreLi.textContent = `${highScores[i].initials} - ${highScores[i].score}`;
         // display on page
         document.getElementById("highscores").appendChild(scoreLi);
       }

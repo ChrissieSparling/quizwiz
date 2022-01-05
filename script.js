@@ -41,7 +41,7 @@ var questionTitle = document.getElementById ("question-title")
 var endQuiz = document.getElementById ("end-screen")
 var initialsEl = document.getElementById("initials");
 var feedbackEl = document.getElementById("feedback");
-
+var submitBtn = document.getElementById("submit");
 function add (num1, num2){
 var total = num1 + num2
 return total
@@ -67,7 +67,7 @@ function cycleQuestions(){
     var displayQuestion = quizQuestions[questionIndex]
     questionTitle.textContent=displayQuestion.title
 answerchoices.innerHTML=""
-    displayQuestion.choices.forEach((choice, i) => {
+    displayQuestion.choices.forEach((choice, _i) => {
          // create new button for each choice
          var answerbutton = document.createElement("button");
          answerbutton.setAttribute("class", "choice");
@@ -89,7 +89,7 @@ function checkAnswer(){
          
 
     } else{
-         console.log("You are Sooo Wrong")
+         console.log("whoops...thats Wrong")
     //add feeback 
     time=time-10
     timerDisplay.textContent=time
@@ -122,14 +122,21 @@ function endQuiz(){
  questionsEl.setAttribute("class", "hide");
 }
 
-function clockTick() {
+function timerDisplay() {
  // update time
  time--;
 timerDisplay.textContent = time;
 
  // check if user ran out of time
- if(time <= 0)
-   quizEnd();
+ if (timerSecs <= 0) {
+  title.textContent = 'You ran out of time!';
+} else {
+  title.textContent = 'All done!';
+}
+
+submitButton.addEventListener('click', saveHighscore);
+}
+
  
 }
 
@@ -180,8 +187,7 @@ submitBtn.onclick = saveHighscore;
 startBtn.onclick = startQuiz;
 
 initialsEl.onkeyup = checkForEnter;
-}
    
    
 //start button
-startbutton.onclick=startQuiz
+startbutton.onclick=startQuiz;
